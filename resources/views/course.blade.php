@@ -23,13 +23,24 @@
 		<h2 class="text-4xl truncate">{{ $course->name }}</h2>
 		<p>{{ $course->description }}</p>
 		<div class="flex mt-3">
-       <img src="{{ $course->user->avatar }}" class="h-10 w-10 rounded-full mr-2" />
-       <div>
-         <p class="text-gray-500 text-sm">{{ $course->user->name }}</p>
-         <p class="text-gray-300 text-xs">{{ $course->created_at->diffForHumans() }}</p>
-       </div>
-     </div>
-		 Similares
+			<img src="{{ $course->user->avatar }}" class="h-10 w-10 rounded-full mr-2" />
+			<div>
+				<p class="text-gray-500 text-sm">{{ $course->user->name }}</p>
+				<p class="text-gray-300 text-xs">{{ $course->created_at->diffForHumans() }}</p>
+			</div>
+		</div>
+		@foreach($course->similar() as $course)
+		<div class="bg-white shadow-lg rounded-lg px-4 py-6 text-center">
+			<a href="{{ route('course', $course->slug) }}">
+				<img src="{{ $course->image }}" alt="{{ $course->name }}" class="rounded-md mb-2">
+
+				<h2 class="text-lg text-gray-600 truncate uppercase font-semibold">{{ $course->name }}</h2>
+				<h3 class="text-md text-gray-500">{{ $course->excerpt }}</h3>
+
+				<img src="{{ $course->user->avatar }}" alt="{{ $course->user->name }}" class="rounded-full mx-auto mt-4 h-16 w-16">
+			</a>
+		</div>
+		@endforeach
 	</div>
 </div>
 
