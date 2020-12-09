@@ -29,9 +29,11 @@
 				<p class="text-gray-300 text-xs">{{ $course->created_at->diffForHumans() }}</p>
 			</div>
 		</div>
-		@foreach($course->similar() as $course)
-		<x-course-card :course="$course" />
-		@endforeach
+		<div class="grid grid-cols-2 gap-4 mt-8"> 
+			@foreach($course->similar() as $course)
+			<x-course-card :course="$course" />
+			@endforeach
+		</div>
 	</div>
 </div>
 
